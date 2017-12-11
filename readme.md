@@ -1,0 +1,1 @@
+an Android application that adds a button in the copy/paste menu to translate any text using gizoogle.net's funkadelic algorithm.
