@@ -18,8 +18,14 @@ public class ProcessGizoogle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //get text highlighted by user
         String text = getIntent()
                 .getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString();
+
+        //get rid of whacky characters
+        text = text.replaceAll("[^\\x00-\\x7F]", "");
+
+        //if the text isn't editable, then just copy the gizoogled version into clipboard
         boolean readonly =
                 getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false);
 
@@ -29,6 +35,7 @@ public class ProcessGizoogle extends AppCompatActivity {
         }
 
         else {
+            Toast.makeText(this, "gizoogling", Toast.LENGTH_SHORT).show();
             new getGizoogled(this).execute(text);
         }
     }
